@@ -1,0 +1,20 @@
+SELECT t.name, COUNT(*) as nb_student
+FROM player p
+JOIN team t ON t.id=p.team_id
+GROUP BY team_id
+ORDER BY nb_student DESC;
+
+
+SELECT t.name
+FROM player p
+JOIN team t ON t.id=p.team_id
+GROUP BY team_id
+HAVING COUNT(*) >= 14;
+
+
+SELECT w.firstname, w.lastname, p.role, p.enrollment_date, dayname(p.enrollment_date)
+FROM player p
+INNER JOIN wizard w ON w.id=p.wizard_id  
+INNER JOIN team t ON t.id=p.team_id
+WHERE t.name = 'Gryffindor' AND dayname(p.enrollment_date) = 'Monday'
+ORDER BY p.enrollment_date;
